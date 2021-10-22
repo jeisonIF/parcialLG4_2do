@@ -1,0 +1,119 @@
+{% extends 'base/base.html' %} {% block seccion %} 
+{% from '_macro.html' import render_field %}
+<section class="item2  " >
+  <div class="row ">
+    <div class="col mb-4">
+      <div class=" card text-center" style="border: none; background-color: rgba(255, 255, 255, 0)">
+            <div class="card-body formM " >
+              <!--formulario-->
+              <div class="logo ">
+                <img src="{{url_for ('static', filename = 'assent/logoInicio.png')}}" alt="" 
+                style="margin-top: 13px;"/>
+                <!--<img src="assent/logoInicio.png" alt="" srcset="" /> -->
+              </div>
+
+              <form action="/guardar" method="POST" style="margin-top: -80px">
+                    {{render_field(form.seccion1)}} {{render_field(form.seccion2)}}
+                    {{render_field(form.seccion3)}} {{render_field(form.seccion4)}}
+                    {{render_field(form.seccion5)}} {{render_field(form.seccion6)}}
+                    {{render_field(form.seccion7)}}
+
+                    <div class="form-check">
+                      
+                      <label class="form-check-label" for="mostrar">
+                        Mostrar datos
+                        <input
+                        class="form-check-input"
+                        type="checkbox"
+                        name="mostrar"
+                        id="mostrar"
+                        
+                      />
+                      </label>
+                    </div>
+                    <button class="btn btn-success" type="submit">Guardar</button>
+              </form>
+            </div>
+          
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<section class="item3 " style="border: none;">
+  <div class="row ">
+    <div class="col mb-4 ">
+      <div {{mostrarDatos}} class=" formM  "   >
+        
+          <div class="card-header border-0" >
+            <h3 class="text-center"> Ultimos datos registros</h3>
+
+          </div>
+          <div class="card-body border-0 scroll" >
+
+            <table class="table table-borderless " style="height: 100%;">
+              <tbody>
+                
+                <!-- {{dataNew|length}} -->
+                {% if dataNew|length >0 %}
+                    <!-- {% for data in dataNew.items() %} {% endfor %}  -->
+                      {% for key,value in dataNew.items() %}
+                        <tr>
+                          <td >{{ key }}</td>
+                          <td scope="col">{{ value }}</td>
+                        </tr>
+                      {% endfor %}    
+                      
+                {% endif %}
+              
+              </tbody>
+            </table>
+          </div>
+      </div>
+    </div>
+  </div>
+    
+  <div class="row " >
+    <div class="col mb-4">
+      <div class="formM"  >
+        <div class="card-header text-center ">
+          <button
+          style="border: none;"
+            class="btn btn-block "
+            type="button"
+            data-toggle="collapse"
+            data-target="#show">
+            <b>Show Databases</b> 
+          </button>
+        </div>
+
+        <div class="collapse" id="show" >
+          <div class="card-body scroll">
+            <div class="input-group">
+              <table class="table">
+                <thead>
+                  <th scope="col"></th>
+                  <th scope="col">Nombre </th>
+                </thead>
+                <tbody >
+                  
+                    {% for data in databases %}
+                      <tr>
+                        <td>{{loop.index }}</td>
+                        <td>{{data.Database}}</td>
+                      </tr>
+                    {% endfor %}
+                  
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+</section>
+{% endblock %}

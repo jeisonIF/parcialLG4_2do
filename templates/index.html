@@ -1,6 +1,21 @@
 {% extends 'base/base.html' %} {% block seccion %} {% from '_macro.html' import
 render_field %}
+
 <section class="item2">
+ 
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+  <div class="flashes">
+    {% for message in messages %}
+      
+        <div class="alert alert-primary" role="alert">
+          {{message}}
+        </div>
+    {% endfor %}
+  </div>
+    
+  {% endif %}
+{% endwith %}
   <div class="row">
     <div class="col mb-4">
       <div
@@ -36,9 +51,7 @@ render_field %}
             </div>
             <button class="btn btn-success" type="submit">Guardar</button>
           </form>
-          <div class="alert alert-primary" role="alert">
-            {{mensaje}}
-          </div>
+          
         </div>
       </div>
     </div>
@@ -46,6 +59,7 @@ render_field %}
 </section>
 
 <section class="item3" style="border: none">
+  
   <div class="row">
     <div class="col mb-4">
       <div {{mostrarDatos}} class="formM">

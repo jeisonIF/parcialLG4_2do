@@ -126,14 +126,16 @@ footer {
 
 .item1 { grid-area: header; 
         max-height: 20%;
-        min-height: 4rem;}
+        min-height: 4rem;
+        overflow:hidden;
+        z-index:1;}
 .item2 { 
         min-height: calc(100% - 8rem);
         max-height: 70%;
         grid-area: main; }
 .item3 { grid-area: right2; 
         min-height: calc(100% - 8rem);
-        max-height: 70%;
+        max-height: 100%;
       }
 .item4 { grid-area: footer;
 
@@ -161,8 +163,8 @@ footer {
 }
 
 .scroll {
-  max-height: 200px;
-  height: 50%;
+  max-height: 60vh;
+  height: 60%;
   overflow-y: auto;
 }
 

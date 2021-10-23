@@ -1,4 +1,4 @@
-from flask import Flask,app,render_template,request,redirect
+from flask import Flask,app,render_template,request,redirect, flash
 from flask.helpers import url_for
 
 from controllers import c_databases
@@ -16,7 +16,7 @@ def home():
     #print(request.form.getlist('mostrar'))
     return render_template(
         'index.html', form = form_data,  
-        mostrarDatos = 'hidden')
+        mostrarDatos = 'hidden',tituloE='Crear Conexion')
 
 
 @app.post('/guardar')
@@ -41,13 +41,13 @@ def guardarData():
         #request.from.get('hotst)
         return render_template(
         'index.html', form = form_data, databases = dataBases, 
-        mostrarDatos = '!hidden')
+        mostrarDatos = '!hidden',tituloE='Lista Bases de datos')
     else:
         #creo conexion y base de datos
         nameDatabase=form_data.baDtos.data
         print('nombre de la base'+ nameDatabase)
         c_databases.setDataSesion(sesion,nameDatabase)
-        
+        flash('Se Creo la bases de datos '+ nameDatabase)
         return redirect('/')
     
 def limpiar(form_data):
